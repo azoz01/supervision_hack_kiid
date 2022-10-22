@@ -6,6 +6,7 @@ from typing import Dict, Callable
 import pandas as pd
 
 from lib.extract_text_data.srri import extract_srri
+from lib.extract_text_data.funds import retrive_register_id, retrive_fund_name, retrive_subfund_name, retrive_organisation_name, retrive_fund_country_id
 from lib.constants import (
     PARSED_KIIDS_DIR,
     GENERATED_COLUMNS,
@@ -14,7 +15,12 @@ from lib.constants import (
 )
 
 COLS_TO_GENERATING_FUNCTIONS_MAPPING: Dict[str, Callable] = {
-    "SRRI": extract_srri
+    "SRRI": extract_srri,
+    "NAZWA_SUBFUNDUSZU": retrive_subfund_name,
+    "NAZWA_FUNDUSZU": retrive_fund_name,
+    "IDENTYFIKATOR_KRAJOWY": retrive_fund_country_id,
+    "NUMER_RFI": retrive_register_id,
+    "PODMIOT_ZARZADZAJACY": retrive_organisation_name
 }
 
 
