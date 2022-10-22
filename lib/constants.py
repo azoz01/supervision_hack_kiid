@@ -12,6 +12,7 @@ PARSED_PDFS_FRAME_COLUMNS.extend(SECTIONS_NAMES)
 
 SPLIT_TOKEN = "<SPLIT_TOKEN>"
 TEAM_NAME = "Pomysłowi_Inżynierowie_Wielkich_Okazji"
+TEAM_ID = 2
 
 DATA_PATH = Path("data")
 RAW_KIIDS_DIR = DATA_PATH / "raw"

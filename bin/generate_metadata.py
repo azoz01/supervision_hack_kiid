@@ -4,7 +4,7 @@ import sys
 sys.path.append(os.path.abspath(os.getcwd()))
 
 import pandas as pd
-from lib.constants import RAW_KIIDS_DIR, META_FILE_PATH
+from lib.constants import RAW_KIIDS_DIR, META_FILE_PATH, TEAM_ID
 
 
 def main():
@@ -18,7 +18,7 @@ def main():
         id += 1
         row_dict = {
             "ID_KIID": id,
-            "ID_ZESPOLU": 2,
+            "ID_ZESPOLU": TEAM_ID,
             "NAZWA_PLIKU": file
         }
         row_df = pd.DataFrame(data=row_dict, index=[0])
