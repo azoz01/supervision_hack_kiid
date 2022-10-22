@@ -1,8 +1,13 @@
 import pandas as pd
 import re
 
+datapath = 'data/knf_funds.pkl'
+knf_df = pd.read_pickle(datapath)
 
-def retrive_register_id(knf_df: "pd.DataFrame", intro_text: str) -> int:
+
+def retrive_register_id(row) -> int:
+    
+    intro_text = row['intro']
 
     does_not_id_exist = (
         knf_df["nr_w_rejestrze"]
@@ -17,9 +22,11 @@ def retrive_register_id(knf_df: "pd.DataFrame", intro_text: str) -> int:
     return df_filtered["nr_w_rejestrze"].iloc[0]
 
 
-def retrive_fund_name(
-    knf_df: "pd.DataFrame", intro_text: str, register_id: int = None
-) -> str:
+def retrive_fund_name(row) -> str:
+
+    intro_text = row['intro']
+    
+    register_id = retrive_register_id(row)
 
     if register_id is None:
         return None
@@ -30,7 +37,9 @@ def retrive_fund_name(
     return full_fund_name
 
 
-def retrive_subfund_name(knf_df: "pd.DataFrame", intro_text: str) -> str:
+def retrive_subfund_name(row) -> str:
+
+    intro_text = row['intro']
 
     does_not_name_exist = (
         knf_df["subfundusz"]
@@ -51,9 +60,11 @@ def retrive_subfund_name(knf_df: "pd.DataFrame", intro_text: str) -> str:
     return fund_name
 
 
-def retrive_fund_name(
-    knf_df: "pd.DataFrame", intro_text: str, register_id: int = None
-) -> str:
+def retrive_organisation_name(row) -> str:
+
+    intro_text = row['intro']
+
+    register_id = retrive_register_id(row)
 
     if register_id is None:
         return None
@@ -64,7 +75,9 @@ def retrive_fund_name(
     return full_organisation_name
 
 
-def retrive_fund_country_id(knf_df: "pd.DataFrame", intro_text: str):
+def retrive_fund_country_id(row):
+
+    intro_text = row['intro']
 
     does_not_id_exist = (
         knf_df["indentyfikator_krajowy"]
@@ -79,7 +92,9 @@ def retrive_fund_country_id(knf_df: "pd.DataFrame", intro_text: str):
     return df_filtered["indentyfikator_krajowy"].iloc[0]
 
 
-def retrive_organisation_id(knf_df: "pd.DataFrame", intro_text: str):
+def retrive_organisation_id(row):
+    
+    intro_text = row['intro']
 
     does_not_id_exist = (
         knf_df["identyfikator_krajowy_funduszu"]
@@ -91,24 +106,4 @@ def retrive_organisation_id(knf_df: "pd.DataFrame", intro_text: str):
     if df_filtered.shape[0] != 1:
         return None
 
-    return df_filtered["indentyfikator_krajowy"].iloc[0]
-
-
-def retive_all_info(
-    knf_df: "pd.DataFrame", intro_text: str, register_id: int = None
-) -> str:
-    register_id = retrive_register_id(knf_df, intro_text)
-    fund_name = retrive_fund_name(knf_df, intro_text, register_id)
-    subfund_name = retrive_subfund_name(knf_df, intro_text)
-    # organisation_name = retrive_organisation_name(knf_df, intro_text, register_id)
-    fund_country_id = retrive_fund_country_id(knf_df, intro_text)
-    organisation_country_id = retrive_organisation_id(knf_df, intro_text)
-
-    return {
-        "fund_name": fund_name,
-        "subfund_name": subfund_name,
-        # 'organisation_name': organisation_name,
-        "register_id": register_id,
-        "fund_country_id": fund_country_id,
-        "organisation_country_id": organisation_country_id,
-    }
+    return df_filtered["identyfikator_krajowy_funduszu"].iloc[0]
