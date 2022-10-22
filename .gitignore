@@ -1,1 +1,6 @@
 /data/*/*.pdf
+/data/*/*.txt
+/data/*/*.parquet
+/data/*/*.csv
+**__pycache__**
+
