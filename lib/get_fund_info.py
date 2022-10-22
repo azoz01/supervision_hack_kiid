@@ -41,7 +41,7 @@ def retrive_subfund_name(knf_df: "pd.DataFrame", intro_text: str) -> str:
 
     return fund_name
 
-def retrive_fund_name(knf_df: 'pd.DataFrame', intro_text: str, register_id: int = None) -> str:
+def retrive_organisation_name(knf_df: 'pd.DataFrame', intro_text: str, register_id: int = None) -> str:
 
     if register_id is None:
         return None
