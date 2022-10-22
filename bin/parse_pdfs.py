@@ -37,7 +37,6 @@ def main():
                 ["intro"] + SECTIONS_NAMES, sections
             )
         }
-        row_dict["srri"] = int(srri)
         row_dict["filename"] = filename
         row_dict["raw_text"] = extracted_text
         df = pd.concat(
