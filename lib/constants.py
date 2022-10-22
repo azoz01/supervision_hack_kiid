@@ -12,6 +12,7 @@ PARSED_PDFS_FRAME_COLUMNS.extend(SECTIONS_NAMES)
 
 SPLIT_TOKEN = "<SPLIT_TOKEN>"
 
+DATA_PATH = Path("data")
 RAW_KIIDS_DIR = Path("data/raw")
 PARSED_KIIDS_DIR = Path("data/parsed")
 TEMPORARY_PATH = Path("temp")
