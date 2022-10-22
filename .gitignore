@@ -3,4 +3,5 @@
 /data/*/*.parquet
 /data/*/*.csv
 /data/*.pkl
+/temp/*
 **__pycache__**
