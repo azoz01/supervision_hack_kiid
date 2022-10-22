@@ -7,18 +7,22 @@ SECTIONS_NAMES = [
     "wyniki osiągnięte w przeszłości",
     "informacje praktyczne",
 ]
-PARSED_PDFS_FRAME_COLUMNS = ["filename", "raw_text", "intro"]
+PARSED_PDFS_FRAME_COLUMNS = ["id", "filename", "raw_text", "intro"]
 PARSED_PDFS_FRAME_COLUMNS.extend(SECTIONS_NAMES)
 
 SPLIT_TOKEN = "<SPLIT_TOKEN>"
-TEAM_NAME = "Pomysłowi_Inżynierowie_Wielkich_Okazji_KIID_META.csv"
+TEAM_NAME = "Pomysłowi_Inżynierowie_Wielkich_Okazji"
 
 DATA_PATH = Path("data")
 RAW_KIIDS_DIR = DATA_PATH / "raw"
 PARSED_KIIDS_DIR = DATA_PATH / "parsed"
 TEMPORARY_PATH = Path("temp")
 FINAL_DATA_DIR = DATA_PATH / "final"
-META_FILE_PATH = FINAL_DATA_DIR / (TEAM_NAME + ".csv")
+META_FILE_PATH = FINAL_DATA_DIR / (TEAM_NAME + "_KIID_META.csv")
+BAG_OF_WORDS_RAW_PATH = FINAL_DATA_DIR / (TEAM_NAME + "_KIID_BAGOFWORDS_S.csv")
+BAG_OF_WORDS_NORM_PATH = FINAL_DATA_DIR / (
+    TEAM_NAME + "_KIID_BAGOFWORDS_N.csv"
+)
 
 
 KEY_PHRASES_DICT = {

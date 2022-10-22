@@ -11,6 +11,7 @@ from lib.constants import (
     PARSED_PDFS_FRAME_COLUMNS,
     SECTIONS_NAMES,
     PARSED_KIIDS_DIR,
+    META_FILE_PATH,
 )
 from lib.pdf_process import split_text_into_sections, get_srri_from_pdf
 from lib.utils import transform_pdf_to_html
@@ -19,14 +20,13 @@ logger = logging.getLogger(__name__)
 
 
 def main():
-    files_paths = RAW_KIIDS_DIR.iterdir()
-    files_paths = list(filter(lambda s: s.suffix == ".pdf", files_paths))
-    logger.info(f"Files_paths: {files_paths}")
+    metadata = pd.read_csv(META_FILE_PATH)
     df = pd.DataFrame(columns=PARSED_PDFS_FRAME_COLUMNS)
-
-    for path in files_paths:
+    for index, row in metadata.iterrows():
+        id = row["ID_KIID"]
+        filename = row["NAZWA_PLIKU"]
+        path = RAW_KIIDS_DIR / filename
         logger.info(f"Processing {path}")
-        filename = path.name
         extracted_text = extract_text(path)
         sections = split_text_into_sections(extracted_text, filename)
         html_pdf = transform_pdf_to_html(path)
@@ -40,6 +40,7 @@ def main():
         row_dict["srri"] = int(srri)
         row_dict["filename"] = filename
         row_dict["raw_text"] = extracted_text
+        row_dict["id"] = id
         df = pd.concat(
             [df, pd.DataFrame(row_dict, index=[0])], ignore_index=True
         )
