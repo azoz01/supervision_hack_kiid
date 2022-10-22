@@ -12,7 +12,8 @@ from lib.constants import (
     SECTIONS_NAMES,
     PARSED_KIIDS_DIR,
 )
-from lib.pdf_process import split_text_into_sections
+from lib.pdf_process import split_text_into_sections, get_srri_from_pdf
+from lib.utils import transform_pdf_to_html
 
 logger = logging.getLogger(__name__)
 
@@ -25,15 +26,18 @@ def main():
 
     for path in files_paths:
         logger.info(f"Processing {path}")
-        extracted_text = extract_text(path)
         filename = path.name
+        extracted_text = extract_text(path)
         sections = split_text_into_sections(extracted_text, filename)
+        html_pdf = transform_pdf_to_html(path)
+        srri = get_srri_from_pdf(html_pdf, filename)
         row_dict = {
             section_name: section
             for section_name, section in zip(
                 ["intro"] + SECTIONS_NAMES, sections
             )
         }
+        row_dict["srri"] = int(srri)
         row_dict["filename"] = filename
         row_dict["raw_text"] = extracted_text
         df = pd.concat(

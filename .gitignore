@@ -4,4 +4,3 @@
 /data/*/*.csv
 /data/*.pkl
 **__pycache__**
-
