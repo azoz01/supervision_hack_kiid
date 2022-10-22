@@ -21,15 +21,22 @@ def retrive_fund_name(knf_df: 'pd.DataFrame', intro_text: str, register_id: int 
 
     return full_fund_name
    
-def retrive_subfund_name(knf_df: 'pd.DataFrame', intro_text: str, register_id: int = None) -> str:
+def retrive_subfund_name(knf_df: "pd.DataFrame", intro_text: str) -> str:
 
-    if register_id is None:
-        return None
+    does_not_name_exist = (
+        knf_df["subfundusz"]
+        .apply(lambda register_id: re.search(str(register_id), intro_text))
+        .isna()
+    )
+    df_filtered = knf_df[~does_not_name_exist]
 
-    df_filtered = knf_df[knf_df['nr_w_rejestrze'] == register_id]
-    full_subfund_name = df_filtered['subfundusz'].unique()[0]
-    
-    return full_subfund_name
+    fund_name = (
+        df_filtered["subfundusz"]
+        .sort_values(key=lambda x: x.str.len(), ascending=False)
+        .iloc[0]
+    )
+
+    return fund_name
 
 def retrive_organisation_name(knf_df: 'pd.DataFrame', intro_text: str, register_id: int = None) -> str:
 
@@ -41,11 +48,11 @@ def retrive_organisation_name(knf_df: 'pd.DataFrame', intro_text: str, register_
     
     return full_organisation_name
 
-def retive_all_info(knf_df: 'pd.DataFrame', intro_text: str) -> str:
+def retive_all_info(knf_df: 'pd.DataFrame', intro_text: str, register_id: int = None) -> str:
     register_id = retrive_register_id(knf_df, intro_text)
     fund_name = retrive_fund_name(knf_df, intro_text, register_id)
     subfund_name = retrive_subfund_name(knf_df, intro_text)
-    organisation_name = retrive_organisation_name(knf_df, intro_text)
+    organisation_name = retrive_organisation_name(knf_df, intro_text, register_id)
 
     return {
         'fund_name': fund_name,
