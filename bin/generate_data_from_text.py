@@ -6,6 +6,7 @@ from typing import Dict, Callable
 import pandas as pd
 
 from lib.extract_text_data.srri import extract_srri
+
 from lib.extract_text_data.funds import (retrive_register_id, 
                                          retrive_fund_name,
                                          retrive_subfund_name,
@@ -45,6 +46,7 @@ COLS_TO_GENERATING_FUNCTIONS_MAPPING: Dict[str, Callable] = {
     "WALUTA_KAPITALU_ZAKLADOWEGO_TOWARZYSTWA": get_currency,
     "CZY_ESG": get_esg,
     "TYP_FUNDUSZU": get_type
+    "KATEGORIE_JEDNOSTEK_UCZESTNICTWA": entity_category.get_category,
 }
 
 
