@@ -1,7 +1,9 @@
 import pandas as pd
 import re
 
-def split_text(text: str) -> list:
+def split_text(text: str) -> str:
+    if text is None:
+        return ''
     text = text.replace('\n\n', '<p>')
     text = ' '.join(text.split())
     text = text.replace('<p>', '\n')
