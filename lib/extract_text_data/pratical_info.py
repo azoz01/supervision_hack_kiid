@@ -118,3 +118,33 @@ def get_type(row) -> str:
     else:
         return regex.group(1) 
     
+def get_isin(row) -> str:
+    text = row['raw_text']
+    text = split_text(text)  
+    
+    isin_regex = re.compile('(\w{2}[\w\d]{9}\d)', re.IGNORECASE)    
+    
+    regex = isin_regex.search(text)
+    
+    if regex is None:
+        return None
+    else:
+        return regex.group(1)    
+    
+def get_previous_scoring_desc(row) -> str:
+    text = row['wyniki osiągnięte w przeszłości']
+    return split_text(text)
+
+def get_first_date(row) -> str:
+    text = row['wyniki osiągnięte w przeszłości']
+    text = split_text(text)
+    
+    first_date_regex = re.compile('((tworzon|ceni)).+(\d{4})\w?r?\.?')
+    
+    regex = first_date_regex.search(text)
+    
+    if regex is None:
+        return None
+    else:
+        return regex.group(3)
+    

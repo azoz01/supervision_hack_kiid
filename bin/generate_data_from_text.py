@@ -21,7 +21,9 @@ from lib.extract_text_data.pratical_info import (
     get_capital,
     get_currency,
     get_esg,
-    get_type
+    get_type,
+    get_isin,
+    get_first_date
 )
 
 from lib.constants import (
@@ -47,6 +49,8 @@ COLS_TO_GENERATING_FUNCTIONS_MAPPING: Dict[str, Callable] = {
     "CZY_ESG": get_esg,
     "TYP_FUNDUSZU": get_type
     "KATEGORIE_JEDNOSTEK_UCZESTNICTWA": entity_category.get_category,
+    "ISIN": get_isin,
+    "DATA_PIERWSZEJ_WYCENY": get_first_date
 }
 
 
