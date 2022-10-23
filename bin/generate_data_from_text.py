@@ -24,7 +24,8 @@ from lib.extract_text_data.pratical_info import (
     get_esg,
     get_type,
     get_isin,
-    get_first_date
+    get_first_date,
+    get_previous_scoring_desc
 )
 import lib.extract_text_data.entity_category as entity_category
 import lib.extract_text_data.levels as levels
@@ -67,6 +68,7 @@ COLS_TO_GENERATING_FUNCTIONS_MAPPING: Dict[str, Callable] = {
     "ZALECANY_OKRES_INWESTYCJI": get_investment_years,
     "PROFIL_RYZYKA_I_ZYSKU": get_profil_ryzyka_i_zysku,
     "OPLATY": get_oplaty,
+    "WYNIKI_OSIAGNIETE_W_PRZESZLOSCI": get_previous_scoring_desc
 }
 
 
