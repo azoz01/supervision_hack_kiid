@@ -79,7 +79,7 @@ def retrive_fund_country_id(row):
         
     register_id = retrive_register_id(row)
 
-        does_not_id_exist = (
+    does_not_id_exist = (
         knf_df["indentyfikator_krajowy"]
         .apply(lambda x: re.search(str(x), intro_text))
         .isna()
