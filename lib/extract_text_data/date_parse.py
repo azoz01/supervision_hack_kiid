@@ -74,3 +74,8 @@ def get_dates_from_row(row):
         except:
             continue
     return dates_date
+
+def get_last_update_date(row):
+    text = row["raw_text"]
+    dates = get_dates_from_row(text)
+    return dates[-1]

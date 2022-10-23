@@ -8,11 +8,13 @@ import pandas as pd
 
 from lib.extract_text_data.srri import extract_srri
 
-from lib.extract_text_data.funds import (retrive_register_id, 
-                                         retrive_fund_name,
-                                         retrive_subfund_name,
-                                         retrive_organisation_name,
-                                         retrive_fund_country_id)
+from lib.extract_text_data.funds import (
+    retrive_register_id,
+    retrive_fund_name,
+    retrive_subfund_name,
+    retrive_organisation_name,
+    retrive_fund_country_id,
+)
 
 from lib.extract_text_data.pratical_info import (
     get_depositary,
@@ -25,7 +27,7 @@ from lib.extract_text_data.pratical_info import (
     get_type,
     get_isin,
     get_first_date,
-    get_previous_scoring_desc
+    get_previous_scoring_desc,
 )
 from lib.extract_text_data.czioju import get_czioju
 import lib.extract_text_data.entity_category as entity_category
@@ -54,14 +56,14 @@ COLS_TO_GENERATING_FUNCTIONS_MAPPING: Dict[str, Callable] = {
     "DEPOZYTARIUSZ": get_depositary,
     "KRS_TOWARZYSTWA": get_krs,
     "NIP_TOWARZYSTWA": get_nip,
-    "SZIEDZIBA_TOWARZYSTWA": get_address,
-    "KAPITAL_ZAKLADOWY_TOWARZYSTWA": get_capital
+    "SIEDZIBA_TOWARZYSTWA": get_address,
+    "KAPITAL_ZAKLADOWY_TOWARZYSTWA": get_capital,
     "WALUTA_KAPITALU_ZAKLADOWEGO_TOWARZYSTWA": get_currency,
     "CZY_ESG": get_esg,
-    "TYP_FUNDUSZU": get_type
+    "TYP_FUNDUSZU": get_type,
     "KATEGORIE_JEDNOSTEK_UCZESTNICTWA": entity_category.get_category,
     "ISIN": get_isin,
-    "DATA_PIERWSZEJ_WYCENY": get_first_date
+    "DATA_PIERWSZEJ_WYCENY": get_first_date,
     "MINIMALNY_POZIOM_INWESTYCJI_UDZIALOWE": levels.get_min_udzialowa,
     "MAKSYMALNY_POZIOM_INWESTYCJI_UDZIALOWE": levels.get_max_udzialowa,
     "MINIMALNY_POZIOM_INWESTYCJI_DLUZNE": levels.get_min_dluzna,
@@ -75,7 +77,8 @@ COLS_TO_GENERATING_FUNCTIONS_MAPPING: Dict[str, Callable] = {
     "CEL_INWESTYCYJNY": get_cel,
     "POLITYKA_INWESTYCYJNA": get_ncel,
     "CZESTOTLIWOSC_ZBYWANIA_I_ODKUPOWANIA_JEDNOSTEK_UCZESTNICTWA": get_czioju,
-    "CZY_FUNDUSZ_WYPLACA_DYWIDENDE": get_dywidenda
+    "CZY_FUNDUSZ_WYPLACA_DYWIDENDE": get_dywidenda,
+    "DATA_AKTUALIZACJI_KIID": get_last_update_date,
 }
 
 
