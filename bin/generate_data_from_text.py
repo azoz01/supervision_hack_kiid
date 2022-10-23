@@ -1,8 +1,8 @@
 import os
 import sys
 
-
 sys.path.append(os.path.abspath(os.getcwd()))
+
 from typing import Dict, Callable
 import pandas as pd
 
@@ -27,13 +27,16 @@ from lib.extract_text_data.pratical_info import (
     get_first_date,
     get_previous_scoring_desc
 )
+from lib.extract_text_data.czioju import get_czioju
 import lib.extract_text_data.entity_category as entity_category
 import lib.extract_text_data.levels as levels
+from lib.extract_text_data.dywidenda import get_dywidenda
 from lib.extract_text_data.oplaty import get_oplaty
 from lib.extract_text_data.investment_years import get_investment_years
 from lib.extract_text_data.profil_ryzyka_i_zysku import (
     get_profil_ryzyka_i_zysku,
 )
+from lib.extract_text_data.target_and_politics import get_cel, get_ncel
 from lib.constants import (
     PARSED_KIIDS_DIR,
     GENERATED_COLUMNS,
@@ -68,7 +71,11 @@ COLS_TO_GENERATING_FUNCTIONS_MAPPING: Dict[str, Callable] = {
     "ZALECANY_OKRES_INWESTYCJI": get_investment_years,
     "PROFIL_RYZYKA_I_ZYSKU": get_profil_ryzyka_i_zysku,
     "OPLATY": get_oplaty,
-    "WYNIKI_OSIAGNIETE_W_PRZESZLOSCI": get_previous_scoring_desc
+    "WYNIKI_OSIAGNIETE_W_PRZESZLOSCI": get_previous_scoring_desc,
+    "CEL_INWESTYCYJNY": get_cel,
+    "POLITYKA_INWESTYCYJNA": get_ncel,
+    "CZESTOTLIWOSC_ZBYWANIA_I_ODKUPOWANIA_JEDNOSTEK_UCZESTNICTWA": get_czioju,
+    "CZY_FUNDUSZ_WYPLACA_DYWIDENDE": get_dywidenda
 }
 
 
