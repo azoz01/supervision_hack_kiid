@@ -9,6 +9,10 @@ def split_text(text: str) -> list:
     return text
 
 def get_depo(text: str) -> str or None:
+    
+    depo_regex = re.compile('depozytariusz(em.*jest)?:?\s*(.*?)(S\.A)?(\.|,|;)', re.IGNORECASE)
+    not_depo_regex = re.compile('(niezgodne.*)|(to\s)')
+    
     regex = depo_regex.search(text)
     if regex is None:
         return None
