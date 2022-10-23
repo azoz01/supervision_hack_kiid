@@ -2,26 +2,22 @@ import os
 import sys
 
 sys.path.append(os.path.abspath(os.getcwd()))
-
-from constants import KEY_PHRASES_DICT
+import pandas as pd
+from lib.constants import KEY_PHRASES_DICT
 
 def lcs(X, Y, factor=20):
-    # find the length of the strings
+
     m = len(X)
     n = len(Y)
     
     max_error = m // factor
  
-    # declaring the array for storing the dp values
     L = [[None]*(n + 1) for i in range(m + 1)]
     M = [[None]*(n + 1) for i in range(m + 1)]
     
     missing_key = [[m]*(n + 1) for i in range(m + 1)]
     missing_text = [[n]*(n + 1) for i in range(m + 1)]
- 
-    """Following steps build L[m + 1][n + 1] in bottom up fashion
-    Note: L[i][j] contains length of LCS of X[0..i-1]
-    and Y[0..j-1]"""
+
     for i in range(m + 1):
         for j in range(n + 1):
             if i == 0 or j == 0 :

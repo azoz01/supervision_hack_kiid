@@ -20,6 +20,8 @@ PARSED_KIIDS_DIR = DATA_PATH / "parsed"
 TEMPORARY_PATH = Path("temp")
 FINAL_DATA_DIR = DATA_PATH / "final"
 META_FILE_PATH = FINAL_DATA_DIR / (TEAM_NAME + "_KIID_META.csv")
+KIID_WYRAZENIA = FINAL_DATA_DIR / (TEAM_NAME + '_KIID_WYRAZENIA.csv')
+KNF_DATA = DATA_PATH / "knf_funds.pkl"
 BAG_OF_WORDS_RAW_PATH = FINAL_DATA_DIR / (TEAM_NAME + "_KIID_BAGOFWORDS_S.csv")
 BAG_OF_WORDS_NORM_PATH = FINAL_DATA_DIR / (
     TEAM_NAME + "_KIID_BAGOFWORDS_N.csv"
@@ -45,7 +47,7 @@ KEY_PHRASES_DICT = {
     "Profil ryzyka i zysku": "profil ryzyka i zysku",
     "Opłaty": "opłaty",
     "Wyniki osiągnięte w przeszłości": "wyniki osiągnięte w przeszłości",
-    "Informacje praktyczne": "informacje praktyczne	",
+    "Informacje praktyczne": "informacje praktyczne",
 }
 
 GENERATED_COLUMNS = [
