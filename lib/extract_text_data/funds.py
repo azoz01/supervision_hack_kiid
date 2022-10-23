@@ -76,12 +76,12 @@ def retrive_organisation_name(row) -> str:
 
 
 def retrive_fund_country_id(row):
+        
+    register_id = retrive_register_id(row)
 
-    intro_text = row['intro']
-
-    does_not_id_exist = (
+        does_not_id_exist = (
         knf_df["indentyfikator_krajowy"]
-        .apply(lambda register_id: re.search(str(register_id), intro_text))
+        .apply(lambda x: re.search(str(x), intro_text))
         .isna()
     )
     df_filtered = knf_df[~does_not_id_exist]
