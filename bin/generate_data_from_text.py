@@ -5,7 +5,7 @@ sys.path.append(os.path.abspath(os.getcwd()))
 
 from typing import Dict, Callable
 import pandas as pd
-
+from tqdm import tqdm
 from lib.extract_text_data.srri import extract_srri
 
 from lib.extract_text_data.funds import (
@@ -39,6 +39,7 @@ from lib.extract_text_data.profil_ryzyka_i_zysku import (
     get_profil_ryzyka_i_zysku,
 )
 from lib.extract_text_data.target_and_politics import get_cel, get_ncel
+from lib.extract_text_data.date_parse import get_last_update_date
 from lib.constants import (
     PARSED_KIIDS_DIR,
     GENERATED_COLUMNS,
@@ -88,7 +89,7 @@ def main():
     final_df = pd.DataFrame(columns=final_df_columns + GENERATED_COLUMNS)
     final_df["ID_KIID"] = df_parsed["id"]
     final_df["ID_ZESPOLU"] = TEAM_ID
-    for column in GENERATED_COLUMNS:
+    for column in tqdm(GENERATED_COLUMNS):
         generator = COLS_TO_GENERATING_FUNCTIONS_MAPPING.get(
             column, lambda arg: None
         )

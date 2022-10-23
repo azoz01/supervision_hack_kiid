@@ -17,7 +17,7 @@ nlp = spacy.load("pl_core_news_lg", exclude=["parser"])
 
 
 def get_czioju(row):
-    cele_i_polityka = row["cele_i_polityka"]
+    cele_i_polityka = row["cele i polityka inwestycyjna"]
     doc = nlp(cele_i_polityka)
     matcher = Matcher(nlp.vocab)
     czioju = []

@@ -52,8 +52,7 @@ def get_dates_from_text(text):
     return dates_date
 
 
-def get_dates_from_row(row):
-    text = row[""]
+def get_dates_from_row(text):
     dates_str = re.findall(r"\d{1,2}\W\w+\W20[012]\d", text)
     dates_split = [re.split(r"\W", date_) for date_ in dates_str]
     dates_date = []
@@ -74,6 +73,7 @@ def get_dates_from_row(row):
         except:
             continue
     return dates_date
+
 
 def get_last_update_date(row):
     text = row["raw_text"]
