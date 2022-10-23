@@ -14,6 +14,7 @@ from lib.extract_text_data.funds import (
     retrive_fund_country_id,
 )
 import lib.extract_text_data.entity_category as entity_category
+import lib.extract_text_data.levels as levels
 from lib.constants import (
     PARSED_KIIDS_DIR,
     GENERATED_COLUMNS,
@@ -29,15 +30,19 @@ COLS_TO_GENERATING_FUNCTIONS_MAPPING: Dict[str, Callable] = {
     "NUMER_RFI": retrive_register_id,
     "PODMIOT_ZARZADZAJACY": retrive_organisation_name,
     "KATEGORIE_JEDNOSTEK_UCZESTNICTWA": entity_category.get_category,
+    "MINIMALNY_POZIOM_INWESTYCJI_UDZIALOWE": levels.get_min_udzialowa,
+    "MAKSYMALNY_POZIOM_INWESTYCJI_UDZIALOWE": levels.get_max_udzialowa,
+    "MINIMALNY_POZIOM_INWESTYCJI_DLUZNE": levels.get_min_dluzna,
+    "MAKSYMALNY_POZIOM_INWESTYCJI_DLUZNE": levels.get_max_udzialowa,
+    "MINIMALNY_POZIOM_INWESTYCJI_TYTULY_UCZESTNICTWA": levels.get_min_tyt_udz,
+    "MAKSYMALNY_POZIOM_INWESTYCJI_TYTULY_UCZESTNICTWA": levels.get_max_tyt_udz,
 }
 
 
 def main():
     df_parsed = pd.read_parquet(PARSED_KIIDS_DIR)
     final_df_columns = ["ID_KIID", "ID_ZESPOLU"]
-    final_df = pd.DataFrame(
-        columns=["ID_KIID", "ID_ZESPOLU"] + GENERATED_COLUMNS
-    )
+    final_df = pd.DataFrame(columns=final_df_columns + GENERATED_COLUMNS)
     final_df["ID_KIID"] = df_parsed["id"]
     final_df["ID_ZESPOLU"] = TEAM_ID
     for column in GENERATED_COLUMNS:
