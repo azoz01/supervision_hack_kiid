@@ -6,7 +6,14 @@ from typing import Dict, Callable
 import pandas as pd
 
 from lib.extract_text_data.srri import extract_srri
-from lib.extract_text_data.funds import retrive_register_id, retrive_fund_name, retrive_subfund_name, retrive_organisation_name, retrive_fund_country_id
+from lib.extract_text_data.funds import (
+    retrive_register_id,
+    retrive_fund_name,
+    retrive_subfund_name,
+    retrive_organisation_name,
+    retrive_fund_country_id,
+)
+import lib.extract_text_data.entity_category as entity_category
 from lib.constants import (
     PARSED_KIIDS_DIR,
     GENERATED_COLUMNS,
@@ -20,7 +27,8 @@ COLS_TO_GENERATING_FUNCTIONS_MAPPING: Dict[str, Callable] = {
     "NAZWA_FUNDUSZU": retrive_fund_name,
     "IDENTYFIKATOR_KRAJOWY": retrive_fund_country_id,
     "NUMER_RFI": retrive_register_id,
-    "PODMIOT_ZARZADZAJACY": retrive_organisation_name
+    "PODMIOT_ZARZADZAJACY": retrive_organisation_name,
+    "KATEGORIE_JEDNOSTEK_UCZESTNICTWA": entity_category.get_category,
 }
 
 
